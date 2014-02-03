@@ -21,6 +21,7 @@ body{
   position:relative;
   display: block;
   border-radius: 15px;
+  border: 3px solid #666;
 }
 
 .main:before {
@@ -32,10 +33,10 @@ body{
   top: 0;
   left: 0;
   z-index: -1;
-/*   background-image: url('http://3.bp.blogspot.com/-E7dg2IVWzEQ/UJQ4GxqBjoI/AAAAAAAAKIc/AppSVaRyGZA/s1600/22211.jpg'); */
-  background-image: url('http://www.trasbus.com/planywarszawy/1935/103.jpg');
+  background-image: url('../img/bg.jpg');
   background-size: cover;
-  opacity: 0.3;
+  opacity: 0.6;
+  border-radius: 15px;
 }
 
 /*
