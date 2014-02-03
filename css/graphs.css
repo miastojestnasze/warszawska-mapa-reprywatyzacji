@@ -14,7 +14,7 @@
 
 svg {
   margin: 0px auto;
-  background: #eee;
+  background: #ddd;
   display: inherit;
   border-radius: 15px;
 }
@@ -27,19 +27,19 @@ svg {
   stroke-width: 10px;
 }
 
-.g-figures circle {
-  stroke: #fff;
-  stroke-width: 10px;
+.g-figures .figure-circle-outer {
+  stroke-width: 16px;
   cursor: pointer;
 }
 
-.g-figures g .figure-circle-outer {
-  transition: 0.1s ease stroke;
+.g-figures .figure-circle-inner {
+  stroke: #fff;
+  stroke-width: 8px;
+  cursor: pointer;
 }
 
 .g-figures g:hover .figure-circle-outer {
   stroke: black!important;
-  transition: 0.1s ease stroke;
 }
 
 .g-figures .figure-business .figure-circle-outer {
@@ -47,7 +47,7 @@ svg {
 }
 
 .g-figures .figure-city .figure-circle-outer {
-  stroke: #6390D3;
+  stroke: #244F8F;
 }
 
 .g-figures .figure-property .figure-circle-outer {
@@ -58,16 +58,31 @@ svg {
  Links
 */
 
-path.link {
+.link-inner {
   fill: none;
-  stroke: #000;
-  stroke-width: 4px;
-  stroke-opacity: 1;
+  stroke: #555;
+  stroke-width: 3px;
   cursor: pointer;
-  opacity: 0.6;
 }
 
+.g-link:hover .link-inner{
+  stroke: #222;
+}
 
-.link:hover {
-  opacity: 0.8;
+.link-outer {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 12px;
+  cursor: pointer;
+}
+
+.link-circle {
+  stroke: #fff;
+  stroke-width: 5px;
+  fill: #555;
+  cursor: pointer;
+}
+
+.g-link:hover .link-circle{
+  fill: #222;
 }
