@@ -21,6 +21,28 @@ var positions = {
   "Jakub Rudnicki": [8,4]
 }
 
+var cleanUpSpecialChars = function(str)
+{
+    str = str.replace(/[ÀÁÂÃÄÅĄ]/,"A");
+    str = str.replace(/[àáâãäåą]/,"a");
+    str = str.replace(/[ÈÉÊËĘ]/,"E");
+    str = str.replace(/[èéêëę]/,"E");
+    str = str.replace(/[Ł]/,"l");
+    str = str.replace(/[ł]/,"l");
+    str = str.replace(/[Ó]/,"o");
+    str = str.replace(/[ó]/,"o");
+    str = str.replace(/[Ń]/,"n");
+    str = str.replace(/[ń]/,"n");
+    str = str.replace(/[Ś]/,"s");
+    str = str.replace(/[ś]/,"s");
+    str = str.replace(/[Ż]/,"z");
+    str = str.replace(/[ż]/,"z");
+    str = str.replace(/[Ź]/,"z");
+    str = str.replace(/[ź]/,"z");
+    return str;
+}
+
+
 var classTypes = {
   "handlarz roszczeniami": "business",
   "nieruchomość": "property",
@@ -32,7 +54,7 @@ var figureImage = function(d){
 }
 
 var figureId = function(d){
-  return d.name.toLowerCase().replace(/\s/g,'-');
+  return cleanUpSpecialChars(d.name).toLowerCase().replace(/\s/g,'-');
 }
 
 
@@ -74,15 +96,15 @@ var toggleTooltip = function(d){
   if(current  && current === d){
     tip.hide(d);
     tip.current = null;
-  }  
+  }
   if(current !== d){
     tip.show(d);
     tip.current = d;
   }
 
 };
-      
-      
+
+
 svg.call(tip);
 
 queue()
@@ -106,16 +128,16 @@ queue()
     desc: d['Opis'],
     url: d['Link'],
     genre: 'link'
-  }  
-}).await(function(error, figures, links) { 
-  
+  }
+}).await(function(error, figures, links) {
+
   _.each(links, function(link){
     var source = _.find(figures, {name: link.source});
     var target = _.find(figures, {name: link.target});
     link.source = {x: source.x, y:source.y}
-    link.target = {x: target.x, y:target.y}    
-  }) 
-   
+    link.target = {x: target.x, y:target.y}
+  })
+
   var links = svg.append("g")
     .attr("class", "g-links")
     .selectAll("g")
@@ -127,11 +149,11 @@ queue()
         var dx = d.target.x - d.source.x,
             dy = d.target.y - d.source.y,
             dr = Math.sqrt(dx * dx + dy * dy);
-        return "M" + 
-            d.source.x + "," + 
-            d.source.y + "A" + 
-            dr + "," + dr + " 0 0,1 " + 
-            d.target.x + "," + 
+        return "M" +
+            d.source.x + "," +
+            d.source.y + "A" +
+            dr + "," + dr + " 0 0,1 " +
+            d.target.x + "," +
             d.target.y;
        })
 
@@ -143,7 +165,7 @@ queue()
       .attr("class", function(d){
         return 'figure-'+classTypes[d.type];
       })
-      .attr("transform", function(d) { 
+      .attr("transform", function(d) {
         return "translate(" + d.x + "," + d.y + ")";
       });
 
@@ -163,10 +185,10 @@ queue()
       .attr("height", mugDiameter)
       .attr("clip-path", "url(#g-mug-clip)")
       .style("pointer-events", "none")
-      
+
    circles
       .attr('x', function(d) { return d.x })
       .attr('y', function(d, i) { return d.y })
       .on('click', toggleTooltip)
-      
+
 });
