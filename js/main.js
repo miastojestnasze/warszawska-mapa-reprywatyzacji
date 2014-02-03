@@ -61,28 +61,6 @@ var figureId = function(d){
 var width = 1020,
     height = 800;
 
-var svg = d3.select("body").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-var mugCurcle = svg.append("defs").append("clipPath")
-    .attr("id", "g-mug-clip")
-  .append("circle")
-    .attr("r", mugDiameter / 2);
-
-
-var curvedLine = function(d) {
-  var dx = d.target.x - d.source.x,
-      dy = d.target.y - d.source.y,
-      dr = Math.sqrt(dx * dx + dy * dy);
-  return "M" +
-      d.source.x + "," +
-      d.source.y + "A" +
-      dr + "," + dr + " 0 0,1 " +
-      d.target.x + "," +
-      d.target.y;
-}
-
 
 
 queue()
@@ -116,6 +94,33 @@ queue()
     link.target = {x: target.x, y:target.y}
   })
 
+  var svg = d3.select(".main")
+        .attr("style", "width:"+width+"px")
+      .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .on('click', function(){
+          tip.hide()
+        })
+        
+  var mugCurcle = svg.append("defs").append("clipPath")
+      .attr("id", "g-mug-clip")
+    .append("circle")
+      .attr("r", mugDiameter / 2);
+  
+  
+  var curvedLine = function(d) {
+    var dx = d.target.x - d.source.x,
+        dy = d.target.y - d.source.y,
+        dr = Math.sqrt(dx * dx + dy * dy);
+    return "M" +
+        d.source.x + "," +
+        d.source.y + "A" +
+        dr + "," + dr + " 0 0,1 " +
+        d.target.x + "," +
+        d.target.y;
+  }
+
   var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset(function(data){
@@ -142,7 +147,7 @@ queue()
 
 
   var toggleTooltip = function(d){
-    console.log('tool')
+    d3.event.stopPropagation();
     var current = tip.current;
     if(current  && current === d){
       tip.hide(d);
