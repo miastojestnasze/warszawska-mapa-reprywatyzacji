@@ -1,0 +1,73 @@
+.header{
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.header h1 {
+  margin-bottom: 0;
+}
+
+.header p {
+  color: #666;
+  margin: 0;
+}
+
+svg {
+  margin: 0px auto;
+  background: #eee;
+  display: inherit;
+  border-radius: 15px;
+}
+
+/*
+ Circles
+*/
+
+.g-figures g{
+  stroke-width: 10px;
+}
+
+.g-figures circle {
+  stroke: #fff;
+  stroke-width: 10px;
+  cursor: pointer;
+}
+
+.g-figures g .figure-circle-outer {
+  transition: 0.1s ease stroke;
+}
+
+.g-figures g:hover .figure-circle-outer {
+  stroke: black!important;
+  transition: 0.1s ease stroke;
+}
+
+.g-figures .figure-business .figure-circle-outer {
+  stroke: rgb(167, 33, 86);
+}
+
+.g-figures .figure-city .figure-circle-outer {
+  stroke: #6390D3;
+}
+
+.g-figures .figure-property .figure-circle-outer {
+  stroke: rgb(70, 167, 143);
+}
+
+/*
+ Links
+*/
+
+path.link {
+  fill: none;
+  stroke: #000;
+  stroke-width: 4px;
+  stroke-opacity: 1;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+
+.link:hover {
+  opacity: 0.8;
+}
