@@ -85,6 +85,7 @@ queue()
     name: d['Tytuł'],
     desc: d['Opis'],
     url: d['Link'],
+    url2: d['Link2'],
     genre: 'link'
   }
 }).await(function(error, figures, links) {
@@ -143,7 +144,10 @@ queue()
     .html(function(d) {
       var html = "<strong>" + d.name + "</strong><br/><br/>"+d.desc+"<br/><br/>";
       if (d.url){
-        html += '<a href="'+d.url+'">' + d.url + '</a>';
+        html += '<div class="d3-tip-link"><a href="'+d.url+'"  target="_blank">' + d.url + '</a></div>';
+      }
+      if (d.url2){
+        html += '<div class="d3-tip-link"><a href="'+d.url2+'"  target="_blank">' + d.url2 + '</a></div>';
       }
       return html
     })

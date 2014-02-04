@@ -4,7 +4,8 @@ body{
 
 .header{
   text-align: center;
-  margin-bottom: 2em;
+  margin-bottom: 3em;
+  margin-top: 2em;
 }
 
 .header h1 {

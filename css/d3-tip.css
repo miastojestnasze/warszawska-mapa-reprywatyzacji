@@ -6,7 +6,9 @@
   pointer-events: none;
   font-size: 13px;
   max-width: 25%;
-  
+}
+
+.d3-tip-link {
     -ms-word-break: break-all;
 
      /* Be VERY careful with this, breaks normal words wh_erever */
@@ -18,9 +20,8 @@
 -webkit-hyphens: auto;
    -moz-hyphens: auto;
         hyphens: auto;
-
+  
 }
-
 /* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
   box-sizing: border-box;
