@@ -2,23 +2,23 @@ var mugDiameter = 70;
 
 var positions = {
   "Maciej Marcinkowski": [5,9],
-  "Marcin Bajko": [9,2],
+  "Marcin Bajko": [8.5,2],
   "Hanna Gronkiewicz-Waltz": [5,1],
-  "Pracownia Davos":[7,1],
   "Jacek Wojciechowicz":[7,1.5],
-  "Jolanta Zdziech-Naperty":[1,3],
-  "Wojciech Bartelski":[3,1.5],
-  "Działka na placu Defilad": [4.5, 5,5],
-  "Działka na placu Zamkowym": [3,7],
-  "Ogród Jordanowski na ul. Szarej":[5.5,6],
-  "Parking na Krakowskim Przedmieściu":[1,7],
-  "Kamienica przy ul. Kazimierzowskiej": [9.5,6],
-  "Boisko na Foksal": [7,7],
-  "Kamienica na aleji Szucha": [8.5, 8],
-  "Marek Mikos": [6.5, 3],
-  "Gimnazjum na ul. Twardej": [1.5, 6],
-  "Pracownia Dawos": [7, 5],
-  "Jakub Rudnicki": [8,4]
+  "Jolanta Zdziech-Naperty":[1,3.5],
+  "Wojciech Bartelski":[1.5,1.5],
+  "Działka na placu Defilad": [5, 5.5],
+  "Działka na placu Zamkowym": [2, 7],
+  "Ogród Jordanowski na ul. Szarej":[6,6.5],
+  "Parking na Krakowskim Przedmieściu":[1,8],
+  "Kamienica na ul. Kazimierzowskiej": [9.5,6],
+  "Boisko na Foksal": [7.5,7],
+  "Kamienica na aleji Szucha": [9, 8],
+  "Marek Mikos": [6, 2.5],
+  "Gimnazjum na ul. Twardej": [3.5,6] ,
+  "Pracownia Dawos": [6.5, 4.5],
+  "Jakub Rudnicki": [8,4],
+  "Ewa Nekanda-Trepka": [3,2]
 }
 
 var cleanUpSpecialChars = function(str)
@@ -65,6 +65,8 @@ var width = 1020,
 
 queue()
 .defer(d3.csv, 'data/figures.csv', function(d) {
+  if(!positions[d['Nazwa']]){
+    throw new Error('no position for' + d['Nazwa']) }
   return {
     name: d['Nazwa'],
     type: d['Typ'],
@@ -86,7 +88,10 @@ queue()
     genre: 'link'
   }
 }).await(function(error, figures, links) {
-
+  
+  if(error){
+    throw error;
+  }
   _.each(links, function(link){
     var source = _.find(figures, {name: link.source});
     var target = _.find(figures, {name: link.target});
