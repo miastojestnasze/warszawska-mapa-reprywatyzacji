@@ -64,15 +64,15 @@ body{
 }
 
 .g-figures .figure-business .figure-circle-outer {
-  stroke: rgb(167, 33, 86);
+  stroke: rgb(216, 20, 98);
 }
 
 .g-figures .figure-city .figure-circle-outer {
-  stroke: #244F8F;
+  stroke: #266BD1;
 }
 
 .g-figures .figure-property .figure-circle-outer {
-  stroke: rgb(70, 167, 143);
+  stroke: rgb(43, 213, 171);
 }
 
 /*
@@ -87,7 +87,8 @@ body{
 }
 
 .g-link:hover .link-inner{
-  stroke: #222;
+  stroke: #000;
+  stroke-width: 4px;
 }
 
 .link-outer {
@@ -99,11 +100,11 @@ body{
 
 .link-circle {
   stroke: #fff;
-  stroke-width: 5px;
+  stroke-width: 3px;
   fill: #555;
   cursor: pointer;
 }
 
 .g-link:hover .link-circle{
-  fill: #222;
+  fill: #000;
 }

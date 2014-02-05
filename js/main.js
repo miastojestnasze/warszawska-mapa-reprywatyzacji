@@ -1,24 +1,25 @@
-var mugDiameter = 70;
+var mugDiameter = 60;
 
 var positions = {
-  "Maciej Marcinkowski": [5,9],
-  "Marcin Bajko": [8.5,2],
-  "Hanna Gronkiewicz-Waltz": [5,1],
-  "Jacek Wojciechowicz":[7,1.5],
-  "Jolanta Zdziech-Naperty":[1,3.5],
+  "Maciej Marcinkowski": [5,8.5],
+  "Marcin Bajko": [9,1.5],
+  "Hanna Gronkiewicz-Waltz": [5,0.5],
+  "Jacek Wojciechowicz":[7.5,1],
+  "Jolanta Zdziech-Naperty":[0.5,3],
   "Wojciech Bartelski":[1.5,1.5],
-  "Działka na placu Defilad": [5, 5.5],
-  "Działka na placu Zamkowym": [2, 7],
-  "Ogród Jordanowski na ul. Szarej":[6,6.5],
-  "Parking na Krakowskim Przedmieściu":[1,8],
+  "Działka na placu Defilad": [5,6],
+  "Działka na placu Zamkowym": [2.75, 6.5],
+  "Ogród Jordanowski na ul. Szarej":[6.5,6.5],
+  "Parking na Krakowskim Przedmieściu":[1,8.5],
   "Kamienica na ul. Kazimierzowskiej": [9.5,6],
-  "Boisko na Foksal": [7.5,7],
-  "Kamienica na aleji Szucha": [9, 8],
-  "Marek Mikos": [6, 2.5],
-  "Gimnazjum na ul. Twardej": [3.5,6] ,
-  "Pracownia Dawos": [6.5, 4.5],
-  "Jakub Rudnicki": [8,4],
-  "Ewa Nekanda-Trepka": [3,2]
+  "Boisko na Foksal": [8,7],
+  "Kamienica na Alei Szucha": [9, 8.5],
+  "Marek Mikos": [5.75, 2],
+  "Gimnazjum na ul. Twardej": [1.5,7] ,
+  "Pracownia Dawos": [7, 4.5],
+  "Jakub Rudnicki": [8.5,4.5],
+  "Ewa Nekanda-Trepka": [3,2.5],
+  "Julia Pitera": [4.3,4.2]
 }
 
 var cleanUpSpecialChars = function(str)
@@ -130,7 +131,7 @@ queue()
   var tip = d3.tip()
     .attr('class', 'd3-tip')
     .offset(function(data){
-      var group = links.filter(function (d) { return d === data })
+      var group = link.filter(function (d) { return d === data })
       var circle = group.select('circle').node();
       if(data.genre === 'figure'){
         return [-25,0]
@@ -140,6 +141,13 @@ queue()
         return [el.y-target.y-25,0]
         //return [target.x-el.x,target.y-el.y]
       }
+    })
+    .direction(function(d){
+      if(d.x > 100 && d.y <100) return 's';
+      if(d.x < 100 && d.y <100) return 'se';      
+      if(d.x > 850 && d.y < 150) return 'sw';
+      if(d.x < 100 && d.y > 100) return 'e';
+      return 'n';
     })
     .html(function(d) {
       var html = "<strong>" + d.name + "</strong><br/><br/>"+d.desc+"<br/><br/>";
@@ -172,25 +180,25 @@ queue()
   /*
     Links
   */
-  var links = svg.append("g")
+  var link = svg.append("g")
     .attr("class", "g-links")
     .selectAll("g")
       .data(links)
     .enter().append("g")
       .attr("class", "g-link")
 
-    links.append("path")
+    link.append("path")
       .attr("class", "link-outer")
       .attr("d", d3.svg.diagonal())
       .on('click', toggleTooltip)
 
-    links.append("path")
+    link.append("path")
       .attr("class", "link-inner")
       .on('click', toggleTooltip)
 //       .attr("d", curvedLine)
       .attr("d", d3.svg.diagonal())
 
-   links.append('circle')
+   link.append('circle')
       .attr("class", "link-circle")
       .attr("cx", function(d){
         var path = this.parentNode.getElementsByClassName('link-inner')[0]
