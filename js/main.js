@@ -1,3 +1,6 @@
+var figuresCsv = "https://docs.google.com/spreadsheet/pub?key=0AnjnlTEMFP-idHo2aXcxVDQ3N3FLQzZvQm5uMnMtR1E&output=csv";
+var linksCsv = "https://docs.google.com/spreadsheet/pub?key=0AnjnlTEMFP-idEM0N1UyWnRqeWlfakhrZ2tuZmNxMFE&output=csv";
+
 var mugDiameter = 60;
 
 var positions = {
@@ -48,24 +51,23 @@ var classTypes = {
   "handlarz roszczeniami": "business",
   "nieruchomość": "property",
   "urzędnik": "city"
-}
+};
 
 var figureImage = function(d){
   return 'img/figures/' + figureId(d) + '.jpg';
-}
+};
 
 var figureId = function(d){
   return cleanUpSpecialChars(d.name).toLowerCase().replace(/\s/g,'-');
-}
+};
 
 
 var width = 1020,
     height = 800;
 
 
-
 queue()
-.defer(d3.csv, 'data/figures.csv', function(d) {
+.defer(d3.csv, figuresCsv, function(d) {
   if(!positions[d['Nazwa']]){
     throw new Error('no position for' + d['Nazwa']) }
   return {
@@ -79,7 +81,7 @@ queue()
 
   }
 })
-.defer(d3.csv, 'data/links.csv', function(d) {
+.defer(d3.csv, linksCsv, function(d) {
   return {
     source: d['A'],
     target: d['B'],
@@ -90,7 +92,7 @@ queue()
     genre: 'link'
   }
 }).await(function(error, figures, links) {
-  
+
   if(error){
     throw error;
   }
@@ -109,13 +111,13 @@ queue()
         .on('click', function(){
           tip.hide()
         })
-        
+
   var mugCurcle = svg.append("defs").append("clipPath")
       .attr("id", "g-mug-clip")
     .append("circle")
       .attr("r", mugDiameter / 2);
-  
-  
+
+
   var curvedLine = function(d) {
     var dx = d.target.x - d.source.x,
         dy = d.target.y - d.source.y,
@@ -144,7 +146,7 @@ queue()
     })
     .direction(function(d){
       if(d.x > 100 && d.y <100) return 's';
-      if(d.x < 100 && d.y <100) return 'se';      
+      if(d.x < 100 && d.y <100) return 'se';
       if(d.x > 850 && d.y < 150) return 'sw';
       if(d.x < 100 && d.y > 100) return 'e';
       return 'n';
@@ -159,7 +161,7 @@ queue()
       }
       return html
     })
-    
+
   svg.call(tip);
 
 
@@ -174,7 +176,7 @@ queue()
       tip.show(d);
       tip.current = d;
     }
-  
+
   };
 
   /*
