@@ -1,12 +1,12 @@
 var figuresCsv = "https://docs.google.com/spreadsheet/pub?key=0AnjnlTEMFP-idHo2aXcxVDQ3N3FLQzZvQm5uMnMtR1E&output=csv";
 var linksCsv = "https://docs.google.com/spreadsheet/pub?key=0AnjnlTEMFP-idEM0N1UyWnRqeWlfakhrZ2tuZmNxMFE&output=csv";
 
-var mugDiameter = 60;
+var mugDiameter = 70;
 
 var positions = {
   "Maciej Marcinkowski": [5,8.5],
   "Marcin Bajko": [9,1.5],
-  "Hanna Gronkiewicz-Waltz": [5,0.5],
+  "Hanna Gronkiewicz-Waltz": [5,0.65],
   "Jacek Wojciechowicz":[7.5,1],
   "Jolanta Zdziech-Naperty":[0.5,3],
   "Wojciech Bartelski":[1.5,1.5],
@@ -131,24 +131,22 @@ queue()
   }
 
   var tip = d3.tip()
-    .attr('class', 'd3-tip')
+    .attr('class', function(){
+      return 'd3-tip'
+    })
     .offset(function(data){
-      var group = link.filter(function (d) { return d === data })
-      var circle = group.select('circle').node();
-      if(data.genre === 'figure'){
-        return [-25,0]
-      }else{
-        var target = d3.event.target.getBBox();
-        var el = circle.getBBox();
-        return [el.y-target.y-25,0]
-        //return [target.x-el.x,target.y-el.y]
-      }
+      return [-35,0]
     })
     .direction(function(d){
-      if(d.x > 100 && d.y <100) return 's';
-      if(d.x < 100 && d.y <100) return 'se';
-      if(d.x > 850 && d.y < 150) return 'sw';
-      if(d.x < 100 && d.y > 100) return 'e';
+      var x = d.x, y=d.y;
+      if(!x||!y){
+        x = (d.source.x + d.target.x)/2
+        y = (d.source.y + d.target.y)/2
+      }
+      if(x > 100 && y < 100) return 's';
+      if(x < 100 && y < 100) return 'e';
+      if(x > 850 && y < 150) return 'w';
+      if(x < 100 && y > 100) return 'e';
       return 'n';
     })
     .html(function(d) {
@@ -166,6 +164,10 @@ queue()
 
 
   var toggleTooltip = function(d){
+    var target = this;
+    if(d.genre === 'link'){
+      target = d3.selectAll('.link-circle').filter(function(e){return e === d;}).node();
+    }
     d3.event.stopPropagation();
     var current = tip.current;
     if(current  && current === d){
@@ -173,9 +175,11 @@ queue()
       tip.current = null;
     }
     if(current !== d){
-      tip.show(d);
+      tip.attr('class', 'd3-tip')
+      tip.show(d, target);
       tip.current = d;
     }
+
 
   };
 

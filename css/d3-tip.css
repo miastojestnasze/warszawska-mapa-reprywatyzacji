@@ -1,11 +1,16 @@
 .d3-tip {
   padding: 12px;
-  background: rgba(0, 0, 0, 0.95);
-  color: #fff;
+  background: rgba(255, 255, 255, 1);
+  color: #000;
   border-radius: 6px;
   pointer-events: none;
   font-size: 13px;
   max-width: 25%;
+  box-shadow: 0px 0px 10px #000;
+  -webkit-box-shadow: 0px 0px 10px #000;
+  -moz-box-shadow: 0px 0px 10px #000;
+  -ms-box-shadow: 0px 0px 10px #000;
+  -o-box-shadow: 0px 0px 10px #000;
 }
 
 .d3-tip-link {
@@ -20,7 +25,7 @@
 -webkit-hyphens: auto;
    -moz-hyphens: auto;
         hyphens: auto;
-  
+
 }
 /* Creates a small triangle extender for the tooltip */
 .d3-tip:after {
@@ -29,7 +34,7 @@
   font-size: 10px;
   width: 100%;
   line-height: 1;
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 1);
   position: absolute;
   pointer-events: none;
 }
@@ -69,5 +74,5 @@
 }
 
 .d3-tip a {
-  color: #ccc;
+  color: #666;
 }
