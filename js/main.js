@@ -4,25 +4,25 @@ var linksCsv = "https://docs.google.com/spreadsheet/pub?key=0AnjnlTEMFP-idEM0N1U
 var mugDiameter = 70;
 
 var positions = {
-  "Maciej Marcinkowski": [5,8.5],
-  "Marcin Bajko": [9,1.5],
+  "Maciej Marcinkowski": [5,9.4],
+  "Marcin Bajko": [9,2],
   "Hanna Gronkiewicz-Waltz": [5,0.65],
   "Jacek Wojciechowicz":[7.5,1],
   "Jolanta Zdziech-Naperty":[0.5,3],
   "Wojciech Bartelski":[1.5,1.5],
-  "Działka na placu Defilad": [5,6],
+  "Działka na placu Defilad": [5,6.5],
   "Działka na placu Zamkowym": [2.75, 6.5],
   "Ogród Jordanowski na ul. Szarej":[6.5,6.5],
   "Parking na Krakowskim Przedmieściu":[1,8.5],
-  "Kamienica na ul. Kazimierzowskiej": [9.5,6],
+  "Kamienica na ul. Kazimierzowskiej": [9.5,5.5],
   "Boisko na Foksal": [8,7],
   "Kamienica na Alei Szucha": [9, 8.5],
   "Marek Mikos": [5.75, 2],
   "Gimnazjum na ul. Twardej": [1.5,7] ,
-  "Pracownia Dawos": [7, 4.5],
+  "Pracownia Dawos": [7, 2.5],
   "Jakub Rudnicki": [8.5,4.5],
   "Ewa Nekanda-Trepka": [3,2.5],
-  "Julia Pitera": [4.3,4.2]
+  "Julia Pitera": [4,4.75]
 }
 
 var cleanUpSpecialChars = function(str)
