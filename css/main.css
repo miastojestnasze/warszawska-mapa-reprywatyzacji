@@ -111,6 +111,19 @@ body {
   position: relative;
 }
 
+.logo {
+  float: left; 
+}
+
+.social {
+  float: right;
+  text-align: right;
+}
+
+.social > iframe {
+  width: 95px!important;
+}
+
 .header h1 {
   margin-bottom: 0;
 }
@@ -121,8 +134,7 @@ body {
 }
 
 .header a {
-  position: absolute;
-  right: 0;
+  right: inherit;
 }
 
 .header img {

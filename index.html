@@ -10,7 +10,10 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <meta property="og:title" content="Warszawska Mapa Reprywatyzacji" /> 
+        <meta property="og:site_name" content="Miasto Jest Nasze" /> 
+        <meta property="og:image" content="http://reprywatyzacja.miastojestnasze.org/img/share.png" /> 
+        <meta property="og:description" content="" />
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
@@ -26,13 +29,27 @@
         <![endif]-->
         <div class="header">
         
-        <a href="http://www.facebook.com/miastojestnasze">
-         <img src="img/logo.png"/>
-        </a>
+          <div class="social">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://bit.ly/1dq9s3P" data-text="Warszawska mapa reprywatyzacji" data-via="MiastoJestNasze" data-lang="pl">Tweetnij</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>        
+            
+            <div id="fb-root"></div>
+            <script>(function(d, s, id) {var js, fjs = d.getElementsByTagName(s)[0]; if (d.getElementById(id)) return; js = d.createElement(s); js.id = id; js.src = "//connect.facebook.net/pl_PL/all.js#xfbml=1"; fjs.parentNode.insertBefore(js, fjs); }(document, 'script', 'facebook-jssdk'));</script>
+            <div class="fb-share-button" data-href="http://reprywatyzacja.miastojestnasze.org" data-type="button_count"></div>
+          </div>
+          
+          <div class="logo">
+          <a href="http://www.facebook.com/miastojestnasze">
+           <img src="img/logo.png"/>
+          </a>
+          </div>
         
-        <h1>Warszawska mapa reprywatyzacji</h1>
-        <p>Kliknij na osobę lub połączenie, aby dowiedzieć się więcej</p>
+          <div class="title">
+            <h1>Warszawska mapa reprywatyzacji</h1>
+            <p>Kliknij na osobę lub połączenie, aby dowiedzieć się więcej</p>
+          </div>
         </div>
+        
         <div class="main">
           <div class="loader">Ładowanie grafiki...</div>
         </div>
