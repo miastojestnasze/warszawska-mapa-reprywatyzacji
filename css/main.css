@@ -155,12 +155,12 @@ textarea {
 }
 
 .g-figures g:hover .figure-circle-outer,
-.g-figures .active .figure-circle-outer{
-  stroke: black!important;
+.g-figure-active .figure-circle-outer{
+  stroke: #DD0000!important;
 }
 
 .g-figures .figure-business .figure-circle-outer {
-  stroke: rgb(216, 20, 98);
+  stroke: rgb(137, 32, 170);
 }
 
 .g-figures .figure-city .figure-circle-outer {
@@ -184,7 +184,7 @@ textarea {
 
 .g-link:hover .link-inner,
 .g-link-active .link-inner{
-  stroke: #000;
+  stroke: #BB0000;
   stroke-width: 4px;
 }
 
@@ -204,7 +204,7 @@ textarea {
 
 .g-link:hover .link-circle,
 .g-link-active .link-circle{
-  fill: #000;
+  fill: #BB0000;
 }
 
 
