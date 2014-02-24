@@ -9,7 +9,7 @@ var positions = {
   "Hanna Gronkiewicz-Waltz": [5,0.65],
   "Jacek Wojciechowicz":[7.5,1],
   "Jolanta Zdziech-Naperty":[0.5,3],
-  "Wojciech Bartelski":[1.5,1.5],
+  "Wojciech Bartelski":[1.75,1.5],
   "Działka na placu Defilad": [5,6.5],
   "Działka na placu Zamkowym": [2.75, 6.5],
   "Ogród Jordanowski na ul. Szarej":[6.5,6.5],
@@ -111,7 +111,9 @@ queue()
         .on('click', function(){
           tip.hide()
         })
-
+        
+  d3.select('.loader').remove()
+  
   var mugCurcle = svg.append("defs").append("clipPath")
       .attr("id", "g-mug-clip")
     .append("circle")

@@ -118,6 +118,14 @@ textarea {
   display: block;
   border-radius: 15px;
   border: 3px solid #666;
+  max-width: 1024px;
+}
+
+.loader {
+  text-align: center;
+  line-height: 300px;
+  color: #333;
+  max-width: 1024px;
 }
 
 .main:before {
@@ -133,6 +141,7 @@ textarea {
   background-size: cover;
   opacity: 0.6;
   border-radius: 15px;
+  max-width: 1024px;
 }
 
 /*
@@ -191,8 +200,9 @@ textarea {
 .link-outer {
   fill: none;
   stroke: #fff;
-  stroke-width: 12px;
+  stroke-width: 10px;
   cursor: pointer;
+  opacity: 1;
 }
 
 .link-circle {
