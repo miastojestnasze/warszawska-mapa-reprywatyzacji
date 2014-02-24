@@ -187,7 +187,7 @@ textarea {
 .link-inner {
   fill: none;
   stroke: #555;
-  stroke-width: 3px;
+  stroke-width: 4px;
   cursor: pointer;
 }
 
@@ -200,14 +200,14 @@ textarea {
 .link-outer {
   fill: none;
   stroke: #fff;
-  stroke-width: 10px;
+  stroke-width: 16px;
   cursor: pointer;
   opacity: 1;
 }
 
 .link-circle {
   stroke: #fff;
-  stroke-width: 3px;
+  stroke-width: 4px;
   fill: #555;
   cursor: pointer;
 }

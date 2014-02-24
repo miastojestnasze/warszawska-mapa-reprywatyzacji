@@ -186,6 +186,24 @@ queue()
   };
 
   /*
+    Links BG
+  */
+  
+  var linkbg = svg.append("g")
+    .attr("class", "g-links-bg")
+    .selectAll("g")
+      .data(links)
+    .enter().append("g")
+      .attr("class", "g-link-bg")
+    .on('mouseover', mouseoverLink)
+    .on('mouseout', mouseoutLink)
+    
+    linkbg.append("path")
+      .attr("class", "link-outer")
+      .attr("d", d3.svg.diagonal())
+      .on('click', toggleTooltip)
+  
+  /*
     Links
   */
   var link = svg.append("g")
@@ -197,10 +215,7 @@ queue()
     .on('mouseover', mouseoverLink)
     .on('mouseout', mouseoutLink)
 
-    link.append("path")
-      .attr("class", "link-outer")
-      .attr("d", d3.svg.diagonal())
-      .on('click', toggleTooltip)
+
 
     link.append("path")
       .attr("class", "link-inner")
@@ -269,15 +284,22 @@ queue()
    }
    
    function mouseoverLink(d){
+     var link = d3.selectAll('.g-link').filter(function(link){
+       return d === link;
+     });
      var figures = d3.selectAll('.g-figure').filter(function(figure){
        return d.source === figure || d.target === figure;
      });
      figures.classed('g-figure-active', true)
+     link.classed('g-link-active', true)
    }
 
    function mouseoutLink(d){
       d3.selectAll(".g-figure-active")
         .classed("g-figure-active", false)
+      d3.selectAll(".g-link-active")
+        .classed("g-link-active", false)
+
    }
    
 });
