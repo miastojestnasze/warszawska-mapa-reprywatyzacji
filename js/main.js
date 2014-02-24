@@ -99,8 +99,8 @@ queue()
   _.each(links, function(link){
     var source = _.find(figures, {name: link.source});
     var target = _.find(figures, {name: link.target});
-    link.source = {x: source.x, y:source.y}
-    link.target = {x: target.x, y:target.y}
+    link.source = source;
+    link.target = target;
   })
 
   var svg = d3.select(".main")
@@ -227,8 +227,10 @@ queue()
       })
       .attr("transform", function(d) {
         return "translate(" + d.x + "," + d.y + ")";
-      });
-
+      })
+      .on('mouseover', mouseoverCircle)
+      .on('mouseout', mouseoutCircle)
+      
   circles.append("circle")
       .attr("r", (mugDiameter / 2))
       .attr("class", 'figure-circle-outer')
@@ -247,5 +249,17 @@ queue()
       .style("pointer-events", "none")
 
    circles.on('click', toggleTooltip)
+  
+   function mouseoverCircle(d){
+     var links = d3.selectAll('.g-link').filter(function(link){
+       return link.source === d || link.target === d;
+     });
+     links.attr('class', 'g-link g-link-active')
+   }
+   
+    function mouseoutCircle(d){
+      d3.selectAll(".g-link-active")
+        .classed("g-link-active", false)
+   }
 
 });

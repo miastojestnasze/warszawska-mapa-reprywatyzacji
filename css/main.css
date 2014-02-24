@@ -154,7 +154,8 @@ textarea {
   cursor: pointer;
 }
 
-.g-figures g:hover .figure-circle-outer {
+.g-figures g:hover .figure-circle-outer,
+.g-figures .active .figure-circle-outer{
   stroke: black!important;
 }
 
@@ -181,7 +182,8 @@ textarea {
   cursor: pointer;
 }
 
-.g-link:hover .link-inner{
+.g-link:hover .link-inner,
+.g-link-active .link-inner{
   stroke: #000;
   stroke-width: 4px;
 }
@@ -200,7 +202,8 @@ textarea {
   cursor: pointer;
 }
 
-.g-link:hover .link-circle{
+.g-link:hover .link-circle,
+.g-link-active .link-circle{
   fill: #000;
 }
 
