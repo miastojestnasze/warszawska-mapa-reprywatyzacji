@@ -192,6 +192,8 @@ queue()
       .data(links)
     .enter().append("g")
       .attr("class", "g-link")
+    .on('mouseover', mouseoverLink)
+    .on('mouseout', mouseoutLink)
 
     link.append("path")
       .attr("class", "link-outer")
@@ -223,7 +225,7 @@ queue()
       .data(figures)
     .enter().append("g")
       .attr("class", function(d){
-        return 'figure-'+classTypes[d.type];
+        return 'g-figure figure-'+classTypes[d.type];
       })
       .attr("transform", function(d) {
         return "translate(" + d.x + "," + d.y + ")";
@@ -255,11 +257,25 @@ queue()
        return link.source === d || link.target === d;
      });
      links.attr('class', 'g-link g-link-active')
+     links.each(mouseoverLink);
    }
    
-    function mouseoutCircle(d){
+   function mouseoutCircle(d){
       d3.selectAll(".g-link-active")
         .classed("g-link-active", false)
+     mouseoutLink();
+   }
+   
+   function mouseoverLink(d){
+     var figures = d3.selectAll('.g-figure').filter(function(figure){
+       return d.source === figure || d.target === figure;
+     });
+     figures.classed('g-figure-active', true)
    }
 
+   function mouseoutLink(d){
+      d3.selectAll(".g-figure-active")
+        .classed("g-figure-active", false)
+   }
+   
 });
