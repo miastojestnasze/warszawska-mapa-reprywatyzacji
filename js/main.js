@@ -5,7 +5,7 @@ var mugDiameter = 70;
 
 var positions = {
   "Maciej Marcinkowski": [5,9.4],
-  "Marcin Bajko": [9,2],
+  "Marcin Bajko": [8.75,2],
   "Hanna Gronkiewicz-Waltz": [5,0.65],
   "Jacek Wojciechowicz":[7.5,1],
   "Jolanta Zdziech-Naperty":[0.5,3],
@@ -22,7 +22,7 @@ var positions = {
   "Pracownia Dawos": [7, 2.5],
   "Jakub Rudnicki": [8.5,4.5],
   "Ewa Nekanda-Trepka": [3,2.5],
-  "Julia Pitera": [4,4.75]
+  "Julia Pitera": [4.25,4.75]
 }
 
 var cleanUpSpecialChars = function(str)
