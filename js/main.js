@@ -227,11 +227,11 @@ queue()
       .attr("class", "link-circle")
       .attr("cx", function(d){
         var path = this.parentNode.getElementsByClassName('link-inner')[0]
-        return path.getPointAtLength(path.getTotalLength()/2).x;
+        return path.getPointAtLength((path.getTotalLength()||0)/2).x;
       })
      .attr("cy", function(d){
         var path = this.parentNode.getElementsByClassName('link-inner')[0]
-        return path.getPointAtLength(path.getTotalLength()/2).y;
+        return path.getPointAtLength((path.getTotalLength()||0)/2).y;
       })
       .attr("r", 8)
       .on('click', toggleTooltip)
