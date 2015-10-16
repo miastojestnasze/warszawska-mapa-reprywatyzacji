@@ -22,7 +22,7 @@ Otwórz w przeglądarce http://localhost:8000
 ## Budowanie i deploy
 
 ```bash
-npm run cleanup
+npm run clean
 npm run build
 npm run deploy
 ```
