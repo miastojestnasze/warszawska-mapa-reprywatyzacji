@@ -1,7 +1,25 @@
-var find = require('lodash.find');
 var config = require('./config');
 
 var utils = module.exports = {};
+
+utils.find = function(collection, predicate) {
+  for (var i = 0, l = collection.length; i < l; i++) {
+    if (utils.matchPredicate(collection[i], predicate)) {
+      return collection[i];
+    }
+  };
+};
+
+utils.matchPredicate = function(object, predicates) {
+  for (var key in predicates) {
+    if (predicates.hasOwnProperty(key) ) {
+      if (!object[key] || object[key] !== predicates[key]) {
+        return false;
+      }
+    } 
+  }
+  return true;
+};
 
 utils.cleanUpSpecialChars = function(str) {
     str = str.replace(/[ÀÁÂÃÄÅĄ]/,"A");
@@ -52,8 +70,8 @@ utils.parseLinks = function(d) {
 
 utils.joinLinksFigures = function(links, figures) {
   links.forEach(function(link) {
-    var source = find(figures, {name: link.source});
-    var target = find(figures, {name: link.target});
+    var source = utils.find(figures, {name: link.source});
+    var target = utils.find(figures, {name: link.target});
     link.source = source;
     link.target = target;
   });
