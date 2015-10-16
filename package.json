@@ -1,0 +1,47 @@
+{
+  "name": "warszawska-mapa-reprywatyzacji",
+  "version": "1.0.0",
+  "description": "Warszawska Mapa Reprywatyzacji",
+  "homepage": "http://reprywatyzacja.miastojestnasze.org",
+  "dependencies": {
+    "d3": "^3.5.6",
+    "d3-tip": "^0.6.7",
+    "lodash.find": "^3.2.1",
+    "browserify": "^11.2.0",
+    "less": "^2.5.3",
+    "live-server": "^0.8.1",
+    "ncp": "^2.0.0",
+    "nodemon": "^1.7.1",
+    "parallelshell": "^2.0.0",
+    "rimraf": "^2.4.3",
+    "serve": "^1.4.0",
+    "stringify": "^3.1.0",
+    "uglifyify": "^3.0.1",
+    "watchify": "^3.4.0"
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "parallelshell 'npm run serve' 'npm run watch'",
+    "build": "npm run build_assets && npm run build_js && npm run build_less && npm run build_html",
+    "build_less": "lessc source/less/main.less dist/main.css",
+    "build_js": "browserify -t stringify -g [ uglifyify ] source/js/main.js -o dist/bundle.js",
+    "build_assets": "mkdir -p dist && ncp source/assets dist/assets",
+    "build_html": "ncp source/index.html dist/index.html",
+    "watch": "parallelshell 'npm run watch_html' 'npm run watch_assets' 'npm run watch_less' 'npm run watch_js'",
+    "watch_html": "nodemon -w source -e html -x 'npm run build_html'",
+    "watch_assets": "nodemon -w source/assets -x 'npm run build_assets'",
+    "watch_less": "nodemon -w source/less/ -e less -x 'npm run build_less'",
+    "watch_js": "watchify source/js/main.js -t stringify --debug --verbose -o dist/bundle.js",
+    "serve": "live-server dist/ --port=8000 --no-browser ",
+    "deploy": "rsync -av dist/ mjn@ssh.dhosting.pl:~/reprywatyzacja/public_html"
+  },
+  "bugs": {
+    "url": "https://github.com/MiastoJestNasze/warszawska-mapa-reprywatyzacji/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MiastoJestNasze/warszawska-mapa-reprywatyzacji.git"
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "private": true
+}
