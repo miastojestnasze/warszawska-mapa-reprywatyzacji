@@ -31,7 +31,9 @@ Odpal projekt lokalnie przy pomocy:
 npm run dev
 ```
 
-Skopiuje to pliki statyczne do folderu `dist`, przekonwertuje pliki LESS do CSS, skompiluje Javascript wraz z source-mapami przy pomocy browserify i uruchomi lokalny serwer http. Projekt jest dostępny w przeglądarce pod adresem http://localhost:8000. Dzięki mechanizmowi watch'y oraz live-reload strona projekt jest automatycznie przebudowywany po zmianach, a strona automatycznie przeładowywana.
+Skopiuje to pliki statyczne do folderu `dist`, przekonwertuje pliki LESS do CSS, skompiluje Javascript wraz z source-mapami przy pomocy browserify i uruchomi lokalny serwer http. 
+
+Projekt jest dostępny w przeglądarce pod adresem http://localhost:8000. Dzięki mechanizmowi watch'y oraz live-reload strona projekt jest automatycznie przebudowywany po zmianach, a strona automatycznie przeładowywana.
 
 ## Wersja produkcyjna
 
@@ -48,4 +50,4 @@ npm run deploy
 
 # Licencja
 
-Creative Commons Attribution-NonCommercial-ShareAlike
+[Creative Commons Attribution-NonCommercial-ShareAlike](LICENSE)
