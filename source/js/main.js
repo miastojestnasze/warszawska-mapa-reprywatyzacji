@@ -1,4 +1,5 @@
 var d3 = require('d3');
+var debounce = require('debounce');
 
 var utils = require('./utils');
 var config = require('./config');
@@ -26,61 +27,72 @@ var svg = d3.select(".main")
     });
 
 links(svg, linksData).on('mouseover', mouseoverLink)
-                   .on('mouseout', mouseoutLink)
-                   .on('click', toggleTooltip);
+                   .on('mouseout', mouseoutLink);
 
 circles(svg, figuresData).on('mouseover', mouseoverCircle)
-                         .on('mouseout', mouseoutCircle)
-                         .on('click', toggleTooltip);
+                         .on('mouseout', mouseoutCircle);
 
-function toggleTooltip(d){
+function showHideTooltip(d){
   var target = this;
-  if (d.genre === 'link'){
+  if (d && d.genre === 'link'){
     target = d3.selectAll('.link-circle').filter(function(e){return e === d;}).node();
   }
-  d3.event.stopPropagation();
-  var current = tooltips.current;
-  if(current  && current === d){
-    tooltips.hide(d);
-    tooltips.current = null;
-  }
-  if(current !== d){
+  var tooltip = d3.selectAll('.d3-tip').node();
+
+  if(utils.isHover(target) || utils.isHover(this)) {
     tooltips.attr('class', 'd3-tip');
     tooltips.show(d, target);
     tooltips.current = d;
+  } else if(!utils.isHover(tooltip)) {
+    tooltips.hide();
+    tooltips.current = null;
   }
 }
+delayedShowHideTooltip = debounce(showHideTooltip, 200);
+d3.selectAll('.d3-tip').on('mouseout', delayedShowHideTooltip);
 
- function mouseoverCircle(d){
-   var links = d3.selectAll('.g-link').filter(function(link){
-     return link.source === d || link.target === d;
-   });
-   links.attr('class', 'g-link g-link-active');
-   links.each(mouseoverLink);
- }
+function mouseoverCircle(d){
+  var links = d3.selectAll('.g-link').filter(function(link){
+    return link.source === d || link.target === d;
+  });
+  links.attr('class', 'g-link g-link-active');
+  links.each(highlightLink);
+  delayedShowHideTooltip.call(this, d);
+}
 
- function mouseoutCircle(d){
-    d3.selectAll(".g-link-active")
-      .classed("g-link-active", false);
-   mouseoutLink();
- }
+function mouseoutCircle(d){
+  d3.selectAll(".g-link-active")
+    .classed("g-link-active", false);
+  unhighlightLinks();
+  delayedShowHideTooltip.call(this, d);
+}
 
- function mouseoverLink(d){
-   var link = d3.selectAll('.g-link').filter(function(link){
-     return d === link;
-   });
-   var figures = d3.selectAll('.g-figure').filter(function(figure){
-     return d.source === figure || d.target === figure;
-   });
-   figures.classed('g-figure-active', true);
-   link.classed('g-link-active', true);
- }
+function highlightLink(d){
+  var link = d3.selectAll('.g-link').filter(function(link){
+    return d === link;
+  });
+  var figures = d3.selectAll('.g-figure').filter(function(figure){
+    return d.source === figure || d.target === figure;
+  });
+  figures.classed('g-figure-active', true);
+  link.classed('g-link-active', true);
+}
 
- function mouseoutLink(d){
-    d3.selectAll(".g-figure-active")
-      .classed("g-figure-active", false);
-    d3.selectAll(".g-link-active")
-      .classed("g-link-active", false);
- }
+function unhighlightLinks(){
+  d3.selectAll(".g-figure-active")
+    .classed("g-figure-active", false);
+  d3.selectAll(".g-link-active")
+    .classed("g-link-active", false);
+}
+
+function mouseoverLink(d){
+  highlightLink(d);
+  delayedShowHideTooltip.call(this, d);
+}
+
+function mouseoutLink(d){
+  unhighlightLinks(d);
+  delayedShowHideTooltip.call(this, d);
+}
 
 d3.select('.loader').remove();

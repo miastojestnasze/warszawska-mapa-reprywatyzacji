@@ -84,3 +84,7 @@ utils.getFigureImageHref = function(d) {
 utils.getFigureId = function(d){
   return utils.cleanUpSpecialChars(d.name).toLowerCase().replace(/\s/g,'-');
 };
+
+utils.isHover = function(element) {
+    return (element.parentElement.querySelector(':hover') === element);
+};
