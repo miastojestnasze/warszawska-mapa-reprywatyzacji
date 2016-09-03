@@ -99,6 +99,7 @@ body {
   background-image: url('../assets/bg.png');
   background-position: center;
   background-repeat: no-repeat;
+  min-width: 1200px;
 }
 
 a.button {
@@ -156,8 +157,19 @@ a.button:hover {
   .social {
     margin-bottom: 20px;
 
+  a {
+    display: inline-block;;
+    background-color: @primary-color;
+    border-radius: 10px;
+    margin-right: 5px;
+
+    &:hover {
+        background-color: @highlight-color;
+    }
+  }
+
     img {
-      width: 40px;
+      width: 35px;
     }
   }
 }
