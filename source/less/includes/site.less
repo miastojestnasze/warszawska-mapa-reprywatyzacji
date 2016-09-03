@@ -86,10 +86,12 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-/* Colors */
+/* Variables */
 @background-color: rgb(160, 0, 10);
 @primary-color: rgb(255, 192, 63);
 @highlight-color: rgb(255, 255, 255);
+
+@interface-font: 'Baloo', sans-serif;
 
 body {
   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
@@ -99,12 +101,63 @@ body {
   background-repeat: no-repeat;
 }
 
+a.button {
+  background-color: @primary-color;
+  border-radius: ~"20px / 50%"; // ~"" syntax to get around less trying to calculate a value
+  height: 40px;
+  line-height: 15px;
+  padding: 6px 15px;
+  box-sizing: border-box;
+  display: block;
+  font-size: 15px;
+  font-family: @interface-font;
+  text-decoration: none;
+  color: black;
+  text-transform: uppercase;
+  background-image: url(/assets/arrow.svg);
+  background-size: 40px;
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
 .main {
   margin: 0px auto;
   position:relative;
   display: block;
   border-radius: 15px;
   max-width: 1024px;
+}
+
+.logo {
+  height: 250px;
+  position: absolute;
+  top: 0;
+  left: 50px;
+}
+
+.action {
+  font-family: @interface-font;
+  color: @primary-color;
+  font-size: 20px;
+  text-transform: uppercase;
+  position: absolute;
+  z-index: 1000;
+  top: 20px;
+  right: 25px;
+  width: 185px;
+  line-height: 25px;
+
+  .button {
+      margin-top: 10px;
+  }
+
+  .social {
+    margin-bottom: 20px;
+
+    img {
+      width: 40px;
+    }
+  }
 }
 
 .loader {

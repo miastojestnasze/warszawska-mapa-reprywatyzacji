@@ -3,7 +3,7 @@ module.exports = {
   mugDiameter: 70,
 
   width: 1020,
-  height: 800,
+  height: 700,
 
   classTypes: {
     "handlarz roszczeniami": "business",
