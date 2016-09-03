@@ -19,25 +19,25 @@ module.exports = function(svg, figures) {
         })
         .attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")";
-        })
+      });
 
     circles.append("circle")
         .attr("r", (config.mugDiameter / 2))
-        .attr("class", 'figure-circle-outer')
+        .attr("class", 'figure-circle-outer');
 
     circles.append("circle")
         .attr("r", (config.mugDiameter / 2))
-        .attr("class", 'figure-circle-inner')
+        .attr("class", 'figure-circle-inner');
 
     circles.append("image")
         .attr("xlink:href", utils.getFigureImageHref)
-        .attr("x", function(d, i) { return - config.mugDiameter / 2 })
-        .attr("y", function(d, i) { return - config.mugDiameter / 2 })
+        .attr("x", function(d, i) { return - config.mugDiameter / 2; })
+        .attr("y", function(d, i) { return - config.mugDiameter / 2; })
         .attr("width", config.mugDiameter)
         .attr("height", config.mugDiameter)
         .attr("clip-path", "url(#g-mug-clip)")
         .style("pointer-events", "none");
 
     return circles;
-    
+
 };

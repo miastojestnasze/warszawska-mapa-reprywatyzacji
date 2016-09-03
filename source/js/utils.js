@@ -7,7 +7,7 @@ utils.find = function(collection, predicate) {
     if (utils.matchPredicate(collection[i], predicate)) {
       return collection[i];
     }
-  };
+  }
 };
 
 utils.matchPredicate = function(object, predicates) {
@@ -16,7 +16,7 @@ utils.matchPredicate = function(object, predicates) {
       if (!object[key] || object[key] !== predicates[key]) {
         return false;
       }
-    } 
+    }
   }
   return true;
 };
@@ -39,11 +39,11 @@ utils.cleanUpSpecialChars = function(str) {
     str = str.replace(/[Ź]/,"z");
     str = str.replace(/[ź]/,"z");
     return str;
-}
+};
 
 utils.parseFigures = function(d) {
   if (!config.positions[d['Nazwa']]) {
-    throw new Error('no position for' + d['Nazwa'])
+    throw new Error('no position for' + d['Nazwa']);
   }
   return {
     name: d['Nazwa'],
@@ -65,8 +65,8 @@ utils.parseLinks = function(d) {
     url: d['Link'],
     url2: d['Link2'],
     genre: 'link'
-  }
-}
+};
+};
 
 utils.joinLinksFigures = function(links, figures) {
   links.forEach(function(link) {
@@ -75,7 +75,7 @@ utils.joinLinksFigures = function(links, figures) {
     link.source = source;
     link.target = target;
   });
-}
+};
 
 utils.getFigureImageHref = function(d) {
   return '/assets/figures/' + utils.getFigureId(d) + '.jpg';

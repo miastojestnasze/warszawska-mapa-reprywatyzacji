@@ -1,7 +1,7 @@
 module.exports = {
-  
+
   mugDiameter: 70,
-  
+
   width: 1020,
   height: 800,
 
@@ -33,4 +33,4 @@ module.exports = {
     "Julia Pitera": [4.25,4.75]
   }
 
-}
+};
