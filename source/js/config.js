@@ -11,10 +11,16 @@ module.exports = {
     "urzędnik": "city"
   },
 
+  sizes: {
+      'small': 60,
+      'medium': 85,
+      'large': 110,
+  },
+
   positions: {
     "Maciej Marcinkowski": [5,9.4],
     "Marcin Bajko": [8.75,2],
-    "Hanna Gronkiewicz-Waltz": [5,0.65],
+    "Hanna Gronkiewicz-Waltz": [5,0.85],
     "Jacek Wojciechowicz":[7.5,1],
     "Jolanta Zdziech-Naperty":[0.5,3],
     "Wojciech Bartelski":[1.75,1.5],

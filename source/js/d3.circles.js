@@ -4,10 +4,14 @@ var utils = require('./utils');
 
 module.exports = function(svg, figures) {
 
-    svg.append("defs").append("clipPath")
-        .attr("id", "g-mug-clip")
-      .append("circle")
-        .attr("r", config.mugDiameter / 2);
+    var defs = svg.append("defs");
+    for(var key in config.sizes) {
+        var size = config.sizes[key];
+        defs.append("clipPath")
+            .attr("id", "g-mug-clip-" + size)
+            .append("circle")
+            .attr("r", size / 2);
+    }
 
     var circles = svg.append("g")
         .attr("class", "g-figures")
@@ -22,16 +26,18 @@ module.exports = function(svg, figures) {
       });
 
     circles.append("circle")
-        .attr("r", (config.mugDiameter / 2))
+        .attr("r", function(d){
+            return d.size / 2;
+        })
         .attr("class", 'figure-circle-inner');
 
     circles.append("image")
         .attr("xlink:href", utils.getFigureImageHref)
-        .attr("x", function(d, i) { return - config.mugDiameter / 2; })
-        .attr("y", function(d, i) { return - config.mugDiameter / 2; })
-        .attr("width", config.mugDiameter)
-        .attr("height", config.mugDiameter)
-        .attr("clip-path", "url(#g-mug-clip)")
+        .attr("x", function(d, i) { return - d.size / 2; })
+        .attr("y", function(d, i) { return - d.size / 2; })
+        .attr("width", function(d){ return d.size; })
+        .attr("height", function(d){ return d.size; })
+        .attr("clip-path", function(d){ return "url(#g-mug-clip-" + d.size + ")"; } )
         .style("pointer-events", "none");
 
     return circles;

@@ -49,12 +49,12 @@ utils.parseFigures = function(d) {
     name: d['Nazwa'],
     type: d['Typ'],
     desc: d['Opis'],
-    image: d['Obrazek'],
     x: config.positions[d['Nazwa']][0] * config.width/10 || 100,
     y: config.positions[d['Nazwa']][1] * config.height/10 || 100,
-    genre: 'figure'
-  }
-}
+    genre: 'figure',
+    size: config.sizes[d['Wielkość']]
+  };
+};
 
 utils.parseLinks = function(d) {
   return {
@@ -65,7 +65,7 @@ utils.parseLinks = function(d) {
     url: d['Link'],
     url2: d['Link2'],
     genre: 'link'
-};
+  };
 };
 
 utils.joinLinksFigures = function(links, figures) {
