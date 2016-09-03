@@ -104,9 +104,8 @@ body {
 a.button {
   background-color: @primary-color;
   border-radius: ~"20px / 50%"; // ~"" syntax to get around less trying to calculate a value
-  height: 40px;
   line-height: 15px;
-  padding: 6px 15px;
+  padding: 6px 30px 4px 15px;
   box-sizing: border-box;
   display: block;
   font-size: 15px;
@@ -120,12 +119,15 @@ a.button {
   background-repeat: no-repeat;
 }
 
+a.button:hover {
+    background-color: @highlight-color;
+}
+
 .main {
   margin: 0px auto;
   position:relative;
   display: block;
   border-radius: 15px;
-  max-width: 1024px;
 }
 
 .logo {
@@ -157,6 +159,17 @@ a.button {
     img {
       width: 40px;
     }
+  }
+}
+
+.texts {
+  position: absolute;
+  bottom: 0;
+  right: 25px;
+  width: 200px;
+
+  .button {
+    margin-bottom: 10px;
   }
 }
 

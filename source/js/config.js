@@ -2,8 +2,8 @@ module.exports = {
 
   mugDiameter: 70,
 
-  width: 1020,
-  height: 700,
+  width: 1250,
+  height: 800,
 
   classTypes: {
     "handlarz roszczeniami": "business",
