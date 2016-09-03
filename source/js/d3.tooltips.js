@@ -6,7 +6,7 @@ module.exports = d3.tip()
     return 'd3-tip';
   })
   .offset(function(data){
-    return [-35,0];
+    return [-12,0];
   })
   .direction(function(d){
     var x = d.x, y=d.y;
@@ -14,8 +14,8 @@ module.exports = d3.tip()
       x = (d.source.x + d.target.x)/2;
       y = (d.source.y + d.target.y)/2;
     }
-    if(x > 100 && y < 100) return 's';
-    if(x < 100 && y < 100) return 'e';
+    if(x > 100 && y < 250) return 's';
+    if(x < 100 && y < 250) return 'e';
     if(x > 850 && y < 150) return 'w';
     if(x < 100 && y > 100) return 'e';
     return 'n';

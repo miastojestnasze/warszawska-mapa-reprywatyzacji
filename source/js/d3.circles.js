@@ -23,10 +23,6 @@ module.exports = function(svg, figures) {
 
     circles.append("circle")
         .attr("r", (config.mugDiameter / 2))
-        .attr("class", 'figure-circle-outer');
-
-    circles.append("circle")
-        .attr("r", (config.mugDiameter / 2))
         .attr("class", 'figure-circle-inner');
 
     circles.append("image")

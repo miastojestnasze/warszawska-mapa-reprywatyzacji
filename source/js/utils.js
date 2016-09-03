@@ -78,7 +78,7 @@ utils.joinLinksFigures = function(links, figures) {
 };
 
 utils.getFigureImageHref = function(d) {
-  return '/assets/figures/' + utils.getFigureId(d) + '.jpg';
+  return '/assets/figures/' + utils.getFigureId(d) + '.png';
 };
 
 utils.getFigureId = function(d){

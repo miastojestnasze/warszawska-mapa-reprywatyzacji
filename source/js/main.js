@@ -6,7 +6,6 @@ var config = require('./config');
 var figuresCsv = require('../data/osoby.txt');
 var linksCsv = require('../data/polaczenia.txt');
 
-var linksOutlines = require('./d3.links-outline');
 var links = require('./d3.links');
 var circles = require('./d3.circles');
 var tooltips = require('./d3.tooltips');
@@ -25,10 +24,6 @@ var svg = d3.select(".main")
       .on('click', function(){
         tooltips.hide();
     });
-
-linksOutlines(svg, linksData).on('mouseover', mouseoverLink)
-                         .on('mouseout', mouseoutLink)
-                         .on('click', toggleTooltip);
 
 links(svg, linksData).on('mouseover', mouseoverLink)
                    .on('mouseout', mouseoutLink)
