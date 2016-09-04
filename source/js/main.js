@@ -1,5 +1,8 @@
 var d3 = require('d3');
 var debounce = require('debounce');
+jQuery = require('jquery');
+
+require('featherlight');
 
 var utils = require('./utils');
 var config = require('./config');
