@@ -13,9 +13,12 @@ var linksCsv = require('../data/polaczenia.txt');
 var links = require('./d3.links');
 var circles = require('./d3.circles');
 var tooltips = require('./d3.tooltips');
+var interactive = require('./d3.interactive');
 
 var figuresData = d3.csv.parse(figuresCsv, utils.parseFigures);
 var linksData = d3.csv.parse(linksCsv, utils.parseLinks);
+
+var interactive_mode = (document.location.search == '?interactive');
 
 utils.joinLinksFigures(linksData, figuresData);
 
@@ -29,11 +32,18 @@ var svg = d3.select(".main")
         tooltips.hide();
     });
 
-links(svg, linksData).on('mouseover', mouseoverLink)
+LinkObjs = links(svg, linksData).on('mouseover', mouseoverLink)
                    .on('mouseout', mouseoutLink);
 
-circles(svg, figuresData).on('mouseover', mouseoverCircle)
+CircleObjs = circles(svg, figuresData).on('mouseover', mouseoverCircle)
                          .on('mouseout', mouseoutCircle);
+
+console.log(interactive_mode);
+if(interactive_mode) {
+    interactive.addForceLayout(linksData, figuresData, LinkObjs, CircleObjs);
+    d3.select("body").attr('class', 'interactive');
+}
+
 
 function showHideTooltip(d){
   var target = this;
@@ -42,7 +52,7 @@ function showHideTooltip(d){
   }
   var tooltip = d3.selectAll('.d3-tip').node();
 
-  if(utils.isHover(target) || utils.isHover(this)) {
+  if(!interactive_mode && (utils.isHover(target) || utils.isHover(this))) {
     tooltips.attr('class', 'd3-tip');
     tooltips.show(d, target);
     tooltips.current = d;

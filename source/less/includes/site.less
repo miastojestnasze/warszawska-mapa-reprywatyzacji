@@ -95,12 +95,27 @@ textarea {
 
 body {
   font-family: Corbel, "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", "Bitstream Vera Sans", "Liberation Sans", Verdana, "Verdana Ref", sans-serif;
+  background-color: #333;
+  min-width: 1200px;
+}
+
+body.interactive {
+  width: 1200px;
+  margin: 0 auto;
+
+  .interactive-output {
+    position: absolute;
+    color: #ccc;
+    padding-top: 15px;
+  }
+}
+
+.content {
+  min-height: 800px;
   background-color: @background-color;
   background-image: url('../assets/bg.png');
   background-position: center;
   background-repeat: no-repeat;
-  min-width: 1200px;
-  min-height: 800px;
 }
 
 a.button {

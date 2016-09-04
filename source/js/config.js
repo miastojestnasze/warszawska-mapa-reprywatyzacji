@@ -1,7 +1,4 @@
 module.exports = {
-
-  mugDiameter: 70,
-
   width: 1200,
   height: 800,
 
