@@ -14,10 +14,10 @@ module.exports = d3.tip()
       x = (d.source.x + d.target.x)/2;
       y = (d.source.y + d.target.y)/2;
     }
-    if(x > 100 && y < 250) return 's';
-    if(x < 100 && y < 250) return 'e';
-    if(x > 850 && y < 150) return 'w';
-    if(x < 100 && y > 100) return 'e';
+    if(x > 200 && y < 250) return 's';
+    if(x < 200 && y < 250) return 'e';
+    if(x > 1000) return 'w';
+    if(x < 200 && y > 200) return 'e';
     return 'n';
   })
   .html(function(d) {
