@@ -118,7 +118,7 @@ body.interactive {
   background-repeat: no-repeat;
 }
 
-a.button {
+.button {
   background-color: @primary-color;
   border-radius: ~"20px / 50%"; // ~"" syntax to get around less trying to calculate a value
   line-height: 15px;
@@ -138,6 +138,10 @@ a.button {
 
 a.button:hover {
     background-color: @highlight-color;
+}
+
+.button-down {
+  background-image: url(/assets/arrow-down.svg);
 }
 
 .main {
@@ -173,7 +177,7 @@ a.button:hover {
   }
 }
 
-.action {
+.actions {
   font-family: @interface-font;
   color: @primary-color;
   font-size: 20px;
@@ -192,31 +196,34 @@ a.button:hover {
   .social {
     margin-bottom: 20px;
 
-  a {
-    display: inline-block;;
-    background-color: @primary-color;
-    border-radius: 10px;
-    margin-right: 5px;
+    a {
+      display: inline-block;;
+      background-color: @primary-color;
+      border-radius: 10px;
+      margin-right: 5px;
 
-    &:hover {
+      &:hover {
         background-color: @highlight-color;
-    }
+      }
   }
 
     img {
       width: 35px;
     }
   }
-}
 
-.texts {
-  position: absolute;
-  bottom: 0;
-  right: 25px;
-  width: 200px;
+  .articles {
+    overflow: hidden;
+    max-height: 50px;
+    transition: all 0.8s ease;
 
-  .button {
-    margin-bottom: 10px;
+    &:hover {
+        max-height: 1000px;
+
+        .button-down {
+            background-color: @highlight-color;
+        }
+    }
   }
 }
 
