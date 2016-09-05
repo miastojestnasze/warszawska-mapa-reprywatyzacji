@@ -1,6 +1,6 @@
 module.exports = {
   width: 1200,
-  height: 1200,
+  height: 700,
 
   classTypes: {
     "handlarz roszczeniami": "business",

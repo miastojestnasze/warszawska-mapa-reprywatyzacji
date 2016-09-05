@@ -23,7 +23,8 @@ module.exports = function(svg, links) {
       var path = this.parentNode.getElementsByClassName('link-inner')[0];
       return path.getPointAtLength((path.getTotalLength()||0)/2).y;
     })
-    .attr("r", 8);
+    .attr("r", 0); // we decided to hide the circles, but still need them
+                   // as targets for tooltips
 
   return link;
 

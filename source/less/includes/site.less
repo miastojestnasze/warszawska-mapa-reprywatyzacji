@@ -111,7 +111,7 @@ body.interactive {
 }
 
 .content {
-  min-height: 800px;
+  min-height: 700px;
   background-color: @background-color;
   background-image: url('../assets/bg.png');
   background-position: center;
@@ -145,6 +145,10 @@ a.button:hover {
   position:relative;
   display: block;
   border-radius: 15px;
+
+  svg {
+    display: block;
+  }
 }
 
 .logo {
@@ -279,16 +283,6 @@ a.button:hover {
   stroke: @highlight-color;
   stroke-width: 4px;
 }
-
-.link-circle {
-  fill: @primary-color;
-}
-
-.g-link:hover .link-circle,
-.g-link-active .link-circle{
-  fill: @highlight-color;
-}
-
 
 /*
  D3 Tip
