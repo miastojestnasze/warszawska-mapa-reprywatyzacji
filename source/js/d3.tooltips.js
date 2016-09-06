@@ -35,10 +35,16 @@ module.exports = d3.tip()
       return get_direction(d);
   })
   .html(function(d) {
-    var html = "<strong>" + d.name + "</strong><br/><br/>"+d.desc+"<br/><br/>";
+    var html = "";
+
+    if(d.name) {
+        html += "<strong>" + d.name + "</strong><br/><br/>";
+    }
+
+    html += d.desc;
 
     if (d.links && d.links.length){
-      html += '<div class="links"><strong>Odnośniki:</strong><br>';
+      html += '<div class="links meta-section"><strong>Odnośniki:</strong><br>';
 
       for(var j=0; j < d.links.length; j++) {
           html += '<div class="link"><a target="_blank" href="' + d.links[j] + '">' + d.links[j] + '</a></div>';
@@ -48,7 +54,7 @@ module.exports = d3.tip()
     }
 
     if (d.properties && d.properties.length){
-      html += '<div><strong>Powiązane nieruchomości:</strong><br>';
+      html += '<div class="meta-section"><strong>Powiązane nieruchomości:</strong><br>';
       for(var i=0; i < d.properties.length; i++) {
           html += '<span class="property">' + d.properties[i] + '</span>';
       }
