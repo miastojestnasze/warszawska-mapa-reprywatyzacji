@@ -27,7 +27,7 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
         .start();
     }
 
-    circles.call(force.drag);
+    circles.call(force.drag).on('mouseover', showName).on('mouseout', hideName);
     var inner_links = links.selectAll(".link-inner");
     var outer_links = d3.selectAll(".link-outer");
     var link_circles = links.selectAll(".link-circle");
@@ -66,5 +66,13 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
             text += '"' + figure.name + '": [' + width + ', ' + height + '],<br>';
         }
         d3.select('.interactive-output').html(text);
+    }
+
+    function showName(d) {
+        document.querySelector('.interactive-name').innerText = d.name;
+    }
+
+    function hideName(d) {
+        document.querySelector('.interactive-name').innerText = '';
     }
 };
