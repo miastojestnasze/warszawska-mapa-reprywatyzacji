@@ -16,6 +16,9 @@ var circles = require('./d3.circles');
 var tooltips = require('./d3.tooltips');
 var interactive = require('./d3.interactive');
 
+var menu = require('./menu');
+menu();
+
 var figuresData = d3.csv.parse(figuresCsv, utils.parseFigures);
 var linksData = d3.csv.parse(linksCsv, utils.parseLinks);
 

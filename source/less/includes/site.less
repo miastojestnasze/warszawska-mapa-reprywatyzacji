@@ -217,7 +217,7 @@ a.button:hover {
     max-height: 50px;
     transition: all 0.8s ease;
 
-    &:hover, &:focus {
+    &:hover, &.articles-show {
         max-height: 1000px;
 
         .button-down {
@@ -300,15 +300,12 @@ a.button:hover {
   fill: none;
   stroke: @primary-color;
   stroke-width: 3px;
-  cursor: pointer;
 }
 
 .link-outer {
   fill: none;
   stroke: transparent;  // just use as an invisible wide hover area
   stroke-width: 16px;
-  cursor: pointer;
-  opacity: 1;
 }
 
 .link-circle {
