@@ -10,6 +10,7 @@ var config = require('./config');
 var figuresCsv = require('../data/osoby.txt');
 var linksCsv = require('../data/polaczenia.txt');
 
+var linksOutlines = require('./d3.links-outline');
 var links = require('./d3.links');
 var circles = require('./d3.circles');
 var tooltips = require('./d3.tooltips');
@@ -36,18 +37,22 @@ var svg = d3.select(".main")
         tooltips.hide();
     });
 
-LinkObjs = links(svg, linksData).on('mouseover', mouseoverLink)
-                   .on('mouseout', mouseoutLink);
+var LinkOutlineObjs = linksOutlines(svg, linksData)
+    .on('mouseover', mouseoverLink)
+    .on('mouseout', mouseoutLink);
 
-CircleObjs = circles(svg, figuresData).on('mouseover', mouseoverCircle)
-                         .on('mouseout', mouseoutCircle);
+var LinkObjs = links(svg, linksData)
+    .on('mouseover', mouseoverLink)
+    .on('mouseout', mouseoutLink);
 
-console.log(interactive_mode);
+var CircleObjs = circles(svg, figuresData)
+    .on('mouseover', mouseoverCircle)
+    .on('mouseout', mouseoutCircle);
+
 if(interactive_mode) {
     interactive.addForceLayout(linksData, figuresData, LinkObjs, CircleObjs);
     d3.select("body").attr('class', 'interactive');
 }
-
 
 function showHideTooltip(d){
   var target = this;

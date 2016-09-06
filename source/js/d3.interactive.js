@@ -29,6 +29,7 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
 
     circles.call(force.drag);
     var inner_links = links.selectAll(".link-inner");
+    var outer_links = d3.selectAll(".link-outer");
     var link_circles = links.selectAll(".link-circle");
 
     function tick() {
@@ -42,6 +43,7 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
           .attr("x2", function(d) { return d.target.x; })
           .attr("y2", function(d) { return d.target.y; });
         inner_links.attr("d", d3.svg.diagonal());
+        outer_links.attr("d", d3.svg.diagonal());
         link_circles
           .attr("cx", function(d){
             var path = this.parentNode.getElementsByClassName('link-inner')[0];
