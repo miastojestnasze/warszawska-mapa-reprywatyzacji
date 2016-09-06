@@ -22,6 +22,10 @@ var interactive_mode = (document.location.search == '?interactive');
 
 utils.joinLinksFigures(linksData, figuresData);
 
+if(interactive_mode) {
+    utils.checkLinksFigures(linksData);
+}
+
 var svg = d3.select(".main")
       .attr("style", "width:" + config.width + "px")
       .append("svg")

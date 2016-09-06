@@ -11,12 +11,21 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
         .nodes(figuresData)
         .links(linksData)
         .size([config.width, config.height])
-        .linkStrength(0)
+        .on("tick", tick);
+
+    if(!config.autodistribution) {
+        force = force.linkStrength(0)
         .charge(-100)
         .chargeDistance(100)
-        .gravity(0)
-        .on("tick", tick)
+        .gravity(0).start();
+    } else {
+        // automatic
+        force = force.linkDistance(100)
+        .linkStrength(0.8)
+        .charge(-10000)
+        .chargeDistance(500)
         .start();
+    }
 
     circles.call(force.drag);
     var inner_links = links.selectAll(".link-inner");
@@ -24,8 +33,8 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
 
     function tick() {
         circles
-          .attr("cx", function(d) { return d.x = Math.max(45, Math.min(config.width - 45, d.x)); })
-          .attr("cy", function(d) { return d.y = Math.max(45, Math.min(config.height - 45, d.y)); })
+          .attr("cx", function(d) { return d.x = Math.max(30, Math.min(config.width - 30, d.x)); })
+          .attr("cy", function(d) { return d.y = Math.max(30, Math.min(config.height - 30, d.y)); })
           .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
         links
           .attr("x1", function(d) { return d.source.x; })

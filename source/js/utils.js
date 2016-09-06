@@ -22,37 +22,40 @@ utils.matchPredicate = function(object, predicates) {
 };
 
 utils.cleanUpSpecialChars = function(str) {
-    str = str.replace(/[ÀÁÂÃÄÅĄ]/,"A");
-    str = str.replace(/[àáâãäåą]/,"a");
-    str = str.replace(/[ÈÉÊËĘ]/,"E");
-    str = str.replace(/[èéêëę]/,"E");
-    str = str.replace(/[Ł]/,"l");
-    str = str.replace(/[ł]/,"l");
-    str = str.replace(/[Ó]/,"o");
-    str = str.replace(/[ó]/,"o");
-    str = str.replace(/[Ń]/,"n");
-    str = str.replace(/[ń]/,"n");
-    str = str.replace(/[Ś]/,"s");
-    str = str.replace(/[ś]/,"s");
-    str = str.replace(/[Ż]/,"z");
-    str = str.replace(/[ż]/,"z");
-    str = str.replace(/[Ź]/,"z");
-    str = str.replace(/[ź]/,"z");
+    str = str.replace(/[ÀÁÂÃÄÅĄ]/g,"A");
+    str = str.replace(/[àáâãäåą]/g,"a");
+    str = str.replace(/[ÈÉÊËĘ]/g,"E");
+    str = str.replace(/[èéêëę]/g,"E");
+    str = str.replace(/[Ł]/g,"l");
+    str = str.replace(/[ł]/g,"l");
+    str = str.replace(/[Ó]/g,"o");
+    str = str.replace(/[ó]/g,"o");
+    str = str.replace(/[Ń]/g,"n");
+    str = str.replace(/[ń]/g,"n");
+    str = str.replace(/[Ś]/g,"s");
+    str = str.replace(/[ś]/g,"s");
+    str = str.replace(/[Ż]/g,"z");
+    str = str.replace(/[ż]/g,"z");
+    str = str.replace(/[Ź]/g,"z");
+    str = str.replace(/[ź]/g,"z");
+    str = str.replace(/[.]/g,"");
     return str;
 };
 
 utils.parseFigures = function(d) {
-  if (!config.positions[d['Nazwa']]) {
-    throw new Error('no position for' + d['Nazwa']);
+  var position = config.positions[d['Nazwa']];
+  if(!position) {
+    position = [5, 5];
   }
   return {
     name: d['Nazwa'],
-    type: d['Typ'],
-    desc: d['Opis'],
-    x: config.positions[d['Nazwa']][0] * config.width/10 || 100,
-    y: config.positions[d['Nazwa']][1] * config.height/10 || 100,
+    desc: d['Opis'].replace(/\n/g,"<br>"),
+    links: d['Linki'] ? d['Linki'].split(/\n/) : [],
+    properties: d['Nieruchomości'] ? d['Nieruchomości'].split(/\n/) : [],
+    size: config.sizes[d['Wielkość']],
+    x: position[0] * config.width/10,
+    y: position[1] * config.height/10,
     genre: 'figure',
-    size: config.sizes[d['Wielkość']]
   };
 };
 
@@ -62,8 +65,7 @@ utils.parseLinks = function(d) {
     target: d['B'],
     name: d['Tytuł'],
     desc: d['Opis'],
-    url: d['Link'],
-    url2: d['Link2'],
+    links: d['Linki'] ? d['Linki'].split(/\n/) : [],
     genre: 'link'
   };
 };
@@ -86,5 +88,13 @@ utils.getFigureId = function(d){
 };
 
 utils.isHover = function(element) {
-    return (element.parentElement.querySelector(':hover') === element);
+  return (element.parentElement.querySelector(':hover') === element);
+};
+
+utils.checkLinksFigures = function(links) {
+  // Make sure there are no links involving nonexisting figures
+  for(var i=0; i < links.length; i++) {
+      if(!links[i].source) console.log("A w linku #" + (i+1) + " nie istnieje!");
+      if(!links[i].target) console.log("B w linku #" + (i+1) + " nie istnieje!");
+  }
 };

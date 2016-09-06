@@ -36,11 +36,23 @@ module.exports = d3.tip()
   })
   .html(function(d) {
     var html = "<strong>" + d.name + "</strong><br/><br/>"+d.desc+"<br/><br/>";
-    if (d.url){
-      html += '<div class="d3-tip-link"><a href="'+d.url+'"  target="_blank">' + d.url + '</a></div>';
+
+    if (d.links && d.links.length){
+      html += '<div class="links"><strong>Odnośniki:</strong><br>';
+
+      for(var j=0; j < d.links.length; j++) {
+          html += '<div class="link"><a target="_blank" href="' + d.links[j] + '">' + d.links[j] + '</a></div>';
+      }
+
+      html += '</div>';
     }
-    if (d.url2){
-      html += '<div class="d3-tip-link"><a href="'+d.url2+'"  target="_blank">' + d.url2 + '</a></div>';
+
+    if (d.properties && d.properties.length){
+      html += '<div><strong>Powiązane nieruchomości:</strong><br>';
+      for(var i=0; i < d.properties.length; i++) {
+          html += '<span class="property">' + d.properties[i] + '</span>';
+      }
+      html += '</div>';
     }
     return html;
 });

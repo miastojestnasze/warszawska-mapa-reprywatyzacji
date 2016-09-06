@@ -19,7 +19,7 @@ module.exports = function(svg, figures) {
         .data(figures)
       .enter().append("g")
         .attr("class", function(d){
-          return 'g-figure figure-' + config.classTypes[d.type];
+          return 'g-figure';
         })
         .attr("transform", function(d) {
           return "translate(" + d.x + "," + d.y + ")";
