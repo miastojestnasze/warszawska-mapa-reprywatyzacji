@@ -146,14 +146,11 @@ body.interactive {
   background-size: 40px;
   background-position: right;
   background-repeat: no-repeat;
+  margin: 10px auto;
 }
 
 a.button:hover {
     background-color: @highlight-color;
-}
-
-.button-down {
-  background-image: url(/assets/arrow-down.svg);
 }
 
 .main {
@@ -201,10 +198,6 @@ a.button:hover {
   width: 185px;
   line-height: 25px;
 
-  .button {
-      margin-top: 10px;
-  }
-
   .social {
     margin-bottom: 20px;
 
@@ -223,20 +216,14 @@ a.button:hover {
       width: 35px;
     }
   }
+}
 
-  .articles {
-    overflow: hidden;
-    max-height: 50px;
-    transition: all 0.8s ease;
-
-    &:hover, &.articles-show {
-        max-height: 1000px;
-
-        .button-down {
-            background-color: @highlight-color;
-        }
-    }
-  }
+.articles {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  right: 25px;
+  width: 200px;
 }
 
 .loader {
