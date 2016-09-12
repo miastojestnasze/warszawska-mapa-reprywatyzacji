@@ -27,7 +27,7 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
         .start();
     }
 
-    circles.call(force.drag).on('mouseover', showName).on('mouseout', hideName);
+    circles.call(force.drag).on('mouseenter', showName).on('mouseleave', hideName);
     var inner_links = links.selectAll(".link-inner");
     var outer_links = d3.selectAll(".link-outer");
     var link_circles = links.selectAll(".link-circle");
