@@ -7,10 +7,10 @@ function get_direction(d) {
       x = (d.source.x + d.target.x)/2;
       y = (d.source.y + d.target.y)/2;
     }
+    if(d.name == "Grzegorz Majewski") return 'e';
     if(x > 200 && y < 250) return 's';
-    if(x < 200 && y < 250) return 'e';
-    if(x > 1000) return 'w';
-    if(x < 200 && y > 200) return 'e';
+    if(x < 300 && y < 500) return 'e';
+    if(x > 900 && y < 500) return 'w';
     return 'n';
 }
 
@@ -35,7 +35,7 @@ module.exports = d3.tip()
       return get_direction(d);
   })
   .html(function(d) {
-    var html = "";
+    var html = "<div class='tip-content'>";
 
     if(d.name) {
         html += "<strong>" + d.name + "</strong><br/><br/>";
@@ -60,5 +60,6 @@ module.exports = d3.tip()
       }
       html += '</div>';
     }
+    html += '</div>';
     return html;
 });

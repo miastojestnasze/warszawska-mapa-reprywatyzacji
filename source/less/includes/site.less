@@ -149,6 +149,15 @@ body.interactive {
   margin: 10px auto;
 }
 
+.disclaimer {
+    color: @primary-color;
+    text-align: center;
+    font-size: 9px;
+    padding: 30px 80px;
+    line-height: 12px;
+    height: 40px;
+}
+
 a.button:hover {
     background-color: @highlight-color;
 }
@@ -184,6 +193,14 @@ a.button:hover {
         margin-top: -1px // SVG has a transparent pixle on top...
     }
   }
+
+  .legend {
+      width: 110px;
+      font-size: 12px;
+      margin-top: 15px;
+      color: @primary-color;
+      font-weight: bold;
+  }
 }
 
 .actions {
@@ -216,6 +233,10 @@ a.button:hover {
       width: 35px;
     }
   }
+}
+
+.map {
+    position: relative;
 }
 
 .articles {
@@ -252,8 +273,8 @@ a.button:hover {
 .d3-tip .property {
     background-color: #ccc;
     padding: 2px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    margin-right: 3px;
+    margin-bottom: 3px;
     display: inline-block;
 }
 
@@ -345,6 +366,11 @@ a.button:hover {
   -ms-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.90);
   -o-box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.90);
   z-index: 10;
+
+  .tip-content {
+      max-height: 400px;
+      overflow: auto;
+  }
 }
 
 .d3-tip-link {
