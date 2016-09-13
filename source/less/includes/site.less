@@ -143,7 +143,7 @@ body.interactive {
   color: black;
   text-transform: uppercase;
   background-image: url(/assets/arrow.svg);
-  background-size: 40px;
+  background-size: 40px 40px;
   background-position: right;
   background-repeat: no-repeat;
   margin: 10px auto;
@@ -190,7 +190,8 @@ a.button:hover {
     }
 
     &.title {
-        margin-top: -1px // SVG has a transparent pixle on top...
+        height: 182px; // IE 10 compatibility
+        margin-top: -1px; // SVG has a transparent pixle on top...
     }
   }
 

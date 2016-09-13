@@ -88,7 +88,7 @@ utils.getFigureId = function(d){
 };
 
 utils.isHover = function(element) {
-  return (element.parentElement.querySelector(':hover') === element);
+  return (element.parentNode.querySelector(':hover') === element);
 };
 
 utils.checkLinksFigures = function(links) {

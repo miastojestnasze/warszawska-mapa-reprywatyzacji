@@ -16,11 +16,11 @@ module.exports = function(svg, links) {
  link.append('circle')
     .attr("class", "link-circle")
     .attr("cx", function(d){
-      var path = this.parentNode.getElementsByClassName('link-inner')[0];
+      var path = d3.select(this.parentNode).select('.link-inner').node();
       return path.getPointAtLength((path.getTotalLength()||0)/2).x;
     })
    .attr("cy", function(d){
-      var path = this.parentNode.getElementsByClassName('link-inner')[0];
+      var path = d3.select(this.parentNode).select('.link-inner').node();
       return path.getPointAtLength((path.getTotalLength()||0)/2).y;
     })
     .attr("r", 1); // we decided to hide the circles, but still need them

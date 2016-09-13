@@ -46,11 +46,11 @@ interactive.addForceLayout = function(linksData, figuresData, links, circles) {
         outer_links.attr("d", d3.svg.diagonal());
         link_circles
           .attr("cx", function(d){
-            var path = this.parentNode.getElementsByClassName('link-inner')[0];
+            var path = d3.select(this.parentNode).select('.link-inner').node();
             return path.getPointAtLength((path.getTotalLength()||0)/2).x;
           })
           .attr("cy", function(d){
-             var path = this.parentNode.getElementsByClassName('link-inner')[0];
+             var path = d3.select(this.parentNode).select('.link-inner').node();
              return path.getPointAtLength((path.getTotalLength()||0)/2).y;
          });
         showPositions();
