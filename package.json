@@ -4,9 +4,12 @@
   "description": "Warszawska Mapa Reprywatyzacji",
   "homepage": "http://reprywatyzacja.miastojestnasze.org",
   "dependencies": {
+    "browserify": "^11.2.0",
     "d3": "^3.5.6",
     "d3-tip": "^0.6.7",
-    "browserify": "^11.2.0",
+    "debounce": "^1.0.0",
+    "featherlight": "^1.4.1",
+    "jquery": "^3.1.0",
     "less": "^2.5.3",
     "live-server": "^0.8.1",
     "ncp": "^2.0.0",
